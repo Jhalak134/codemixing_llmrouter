@@ -1,0 +1,44 @@
+{
+  "plan_sha256": "b788a5cbe65af0791c463970ee5e94c142cc4a17add9a61727358d2130e047b8",
+  "final_model": "M4 boosting d=3 n=100",
+  "final_family": "M4",
+  "cv_mae": {
+    "M2": 0.06397644973190406,
+    "M3": 0.05760590704076092,
+    "M4": 0.05340091490003208
+  },
+  "cv_mae_se": {
+    "M2": 0.003952520455098215,
+    "M3": 0.0037889859404151133,
+    "M4": 0.0030556022577969515
+  },
+  "cv_mean_agree": {
+    "M2": 0.881,
+    "M3": 0.8859999999999999,
+    "M4": 0.8959999999999999,
+    "M1": 0.8800000000000001
+  },
+  "frozen_input_hashes": {
+    "third_scores": "dd0bff026a0c87a26cd0c21b57bbcd92a07d5a6f4fc116719e51a0a14f61c6c4",
+    "third_features": "96d29da731349af35caea7015e783f869c78a1e85ba51ea66b2ecdeb6dc1f682",
+    "test_scores": "02adcb60eb09532bf66fca4997fb510277543e00ad081c7f7e366299a092bb1e",
+    "test_features": "5de6ef62f75a2b95cf8467c27dfe5747d7310450514368f6910befb17d538aa0"
+  },
+  "seed": 0,
+  "cuts": {
+    "10%": 0.5949,
+    "20%": 0.5094,
+    "30%": 0.4651,
+    "50%": 0.4066,
+    "70%": 0.3372
+  },
+  "folds": 10,
+  "bootstrap": 10000,
+  "versions": {
+    "python": "3.13.18",
+    "numpy": "2.4.6",
+    "pandas": "2.2.3",
+    "sklearn": "1.6.1",
+    "scipy": "1.16.3"
+  }
+}
