@@ -1,6 +1,6 @@
-# Correction Model: Locked Plan (DRAFT v1, not yet locked)
+# Correction Model: Plan v1 (READY FOR SIGN-OFF)
 
-Owner: Person 4 (Neha). Reviewers: Person 3 (Jhalak, analysis), Person 1 (Aryan, paper text). Status: **DRAFT**. Everything in `[brackets]` is still to be filled. After all four sign below, this file is frozen and may not be edited; any change becomes `correction_model_plan_v2.md` with a stated reason.
+Owner: Person 4 (Neha). Reviewers: Person 3 (Jhalak, analysis), Person 1 (Aryan, paper text). Status: **SIGNED BY ALL FOUR, FROZEN** (15 Nov 2026). After all four sign below, this file is frozen and may not be edited; any change becomes `correction_model_plan_v2.md` with a stated reason.
 
 ## 1. Question
 
@@ -12,7 +12,7 @@ This plan covers only the correction model, for the **BERT router only**. It doe
 
 | Role | Data | Rule |
 |---|---|---|
-| Fit and tune | Third set (200 pairs, `scores/scores_thirdset_v1.csv`, BERT columns `english_bert` and `hinglish_bert`, SHA-256 `[hash, from Reshmi after the real run]`) | The only data used to fit or tune anything |
+| Fit and tune | Third set (200 pairs, `scores/scores_thirdset_v1.csv`, BERT columns `english_bert` and `hinglish_bert`, IDs 301 to 500, SHA-256 `dd0bff026a0c87a26cd0c21b57bbcd92a07d5a6f4fc116719e51a0a14f61c6c4`; scored once from `thirdset_v2.csv`, SHA-256 `91d82d48a161527174fa82b47a9e041f8ad379ebbf7dc071147f05540b13a826`) | The only data used to fit or tune anything |
 | Test, used once | 152 confirmatory pairs (`confirmatory_v1.csv`, hash in `HASHES.md`) and their saved scores | Scores are read once at the end. No tuning, no peeking before this plan is signed |
 | Not used | 80 pilot pairs; MF scores; Spanish and Bengali sets | Pilot is retired from the correction model. MF scores sit around 0.2 and BERT's cut-offs do not apply to them. Spanish and Bengali are translations of the 152 test questions, so using them would leak the test set |
 
@@ -20,7 +20,7 @@ Splitting inside the third set is by `pair_id` (one row per pair, so twins never
 
 ## 3. Inputs and target
 
-**Allowed inputs (Hinglish text only):** the Hinglish **BERT** router score (the third-set scoring run also saves MF columns; they are not used); Hinglish token count, word count and fertility from the router's own tokenizer. Person 4 computes them for the third set with the same recipe as `features_confirmatory_v1.csv` (words = whitespace split, tokens = router tokenizer, fertility = tokens / words), because the scoring notebook does not save them.
+**Allowed inputs (Hinglish text only):** the Hinglish **BERT** router score (the third-set scoring run also saves MF columns; they are not used); Hinglish token count, word count and fertility from the router's own tokenizer. Person 4 computes them for the third set with the same recipe as `features_confirmatory_v1.csv` (words = whitespace split, tokens = router tokenizer, fertility = tokens / words), because the scoring notebook does not save them. They are computed from the Hinglish text only, before sign-off, into `features_thirdset_v1.csv`, and that file's SHA-256 is saved in `config_corr_v1.json`. Computing features touches no scores.
 
 **Never allowed as inputs:** the English score or text, `task_type`, `difficulty`, `source`, `written_by`, `drafting_method`, anything computed from the English version.
 
@@ -34,7 +34,7 @@ Splitting inside the third set is by `pair_id` (one row per pair, so twins never
 4. **M3, linear regression** of the English score on the allowed inputs, predictions clipped to [0, 1].
 5. **M4, small gradient boosting** on the allowed inputs, with the grid fixed in Section 5.
 
-All five Arena cut-offs `0.5949, 0.5094, 0.4651, 0.4066, 0.3372` (from `config_v4.json`, confirmed to four decimals `[ ]`) are applied unchanged to corrected scores. The primary cut-off is 0.4066.
+All five Arena cut-offs `0.5949, 0.5094, 0.4651, 0.4066, 0.3372` (from `config_v4.json`, confirmed to four decimals on 15 Nov 2026) are applied unchanged to corrected scores. The primary cut-off is 0.4066.
 
 **Known equivalence, stated in advance.** M2 and M1 send exactly the same questions to the strong model at each cut-off when fitted on the same data (checked on synthetic data: 99.3 to 100% agreement, the rest being interpolation). So M2 cannot beat M1 on routing decisions. M2 adds a usable corrected score, M1 does not. Only M3 and M4 can beat M1, and only if the extra inputs carry information. The earlier ridge result (cross-validated R² about 0.05) makes a null result likely. A null result is a valid result and will be reported as such.
 
@@ -94,7 +94,7 @@ Expected, stated in advance: a monotone map such as M2 leaves question ranking a
 
 | Name | Role | Date |
 |---|---|---|
-| Neha Malhotra | Person 4 | |
-| Jhalak Mittal | Person 3 | |
-| Aryan Singhal | Person 1 | |
-| Reshmi Yadav | Person 2 | |
+| Neha Malhotra | Person 4 | SIGNED, 15 Nov 2026|
+| Jhalak Mittal | Person 3 | SIGNED, 15 Nov 2026|
+| Aryan Singhal | Person 1 | SIGNED, 15 Nov 2026|
+| Reshmi Yadav | Person 2 | SIGNED, 15 Nov 2026|
