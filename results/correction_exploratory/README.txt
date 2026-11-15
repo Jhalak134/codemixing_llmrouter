@@ -1,0 +1,1 @@
+Exploratory checks from plan section 8 (not pass/fail). Run in Google Colab, sklearn 1.6.1 (see results/correction/config_corr_v1.json). The no-Coding refit can differ in the 3rd decimal under other sklearn versions; decisions are unchanged.
