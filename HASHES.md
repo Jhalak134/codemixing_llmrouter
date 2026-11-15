@@ -11,3 +11,4 @@ Check with `python scripts/verify_hashes.py`. Add a row when a new file is froze
 | `configs/config_conf_v1.json` | 29cc717017857830b057b87a63d9c5d0eb6b01c970774eca9de8edf9299d8618 |
 | `configs/config_v4.json` | a58c4a69f41599b1cb543f606d07ac773f00ac0cac1d0b2578fb5ff939ff52ea |
 | `docs/correction_model_plan_v1.md` | b788a5cbe65af0791c463970ee5e94c142cc4a17add9a61727358d2130e047b8 |
+| `features/features_thirdset_v1.csv` | 96d29da731349af35caea7015e783f869c78a1e85ba51ea66b2ecdeb6dc1f682 |
