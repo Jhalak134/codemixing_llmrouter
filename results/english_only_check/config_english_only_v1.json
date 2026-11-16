@@ -1,0 +1,22 @@
+{
+  "date_utc": "2026-11-16T05:14:01Z",
+  "seed": 0,
+  "sample_sizes": {
+    "MMLU": 200,
+    "GSM8K": 200,
+    "MT-Bench": "all 80 first-turn prompts"
+  },
+  "datasets": [
+    "cais/mmlu all/test",
+    "openai/gsm8k main/test",
+    "HuggingFaceH4/mt_bench_prompts train"
+  ],
+  "detector_file": "models/hinglish_language_detector.joblib",
+  "detector_sha256": "d3407eb6873024e8f870599746e962f44520f9fa05dff078d53c9b810fc64340",
+  "detector_training_data": "NOT RECORDED (legacy file)",
+  "outside_prompts_sha256": "853f99df163bcebdea25cab70c6daf5e3ade71e412af18b0592651772d1e2018",
+  "threshold": 0.5,
+  "sklearn": "1.6.1",
+  "python": "3.13.18",
+  "status": "exploratory, not in the frozen plan"
+}
