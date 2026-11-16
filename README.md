@@ -1,40 +1,34 @@
-code mixing llm router research analysis 
+# Code-mixing and score compression in LLM routing
 
-## Person 4: correction and safety evaluation
+Does the RouteLLM BERT router score Hinglish questions differently from their English twins?
+Main finding (152 confirmatory pairs): the average score is the same, but Hinglish scores have about half the spread of English scores, so routing depends on the cut-off. Answer quality was not measured.
 
-These analyses use saved scores; confirmatory prompts were not rescored.
+## Layout
+| Folder | Contents |
+| --- | --- |
+| `data/processed/` | `confirmatory_v1.csv`, the frozen 152 pairs (IDs 101-252). Never edit. |
+| `data/provenance/` | Earlier drafts of the frozen file. Not for scoring. |
+| `scores/` | `scores_confirmatory_v1.csv`, `scores_triple_v1.csv`, `scores_ood_scrambled_v1.csv` (confirmatory run). [Other files: pilot / exploratory, see below.] |
+| `features/` | `features_confirmatory_v1.csv`, `features_triple_v1.csv`. [Others: pilot.] |
+| `configs/` | `config_conf_v1.json` (router, version, file hash), `config_v4.json` (the five cut-offs). |
+| `results/person3/` | Confirmatory analysis outputs, `_v2` set (the one the paper cites). |
+| `docs/` | `correction_model_plan_v1.md` (signed plan) and the paper replacement text. |
+| `results/correction/` | Final correction-model outputs (frozen, hashes in `HASHES.md`). |
+| `results/correction_exploratory/` | Post-hoc checks by group and without Coding. Exploratory only. |
+| `notebooks/` | Dataset building, scoring and analysis notebooks (outputs stripped). |
+| `routerbench/` | Why-BERT experiment on 997 RouterBench prompts. Scores only, no prompt text. |
+| `HASHES.md` | SHA-256 of every frozen file. Check with `python scripts/verify_hashes.py`. |
 
-- Integrated confirmatory check: 152 pairs; MAE 0.0719; 50% route agreement 0.8947. The detector classified all English and Hinglish prompts in the pairs as expected.
-- English-only detector check: 280 prompts across GSM8K (100), MMLU (100), and MT-Bench (80); zero false positives and zero route changes.
-- Hard-versus-Easy AUC: the multivariate linear model reached 0.645 (95% bootstrap CI 0.555–0.730). The other model CIs included 0.50.
-- Replication verdict: score compression replicated in the confirmatory set; the pilot’s mean-score direction did not.
+## Rules
+- Frozen files are never edited. A fix becomes a new version with a new hash and a new run.
+- Scoring ran once on the frozen file. The analysis notebook ran more than once (`_v1`, `_v2`); the paper cites `_v2`.
+- Cut-off shares (10/20/30/50/70%) are nominal, from Chatbot Arena calibration.
 
-Saved in Drive under `ResearchPaper(ML)/correction_model_results/`:
-`english_safety_summary_v1.csv`, `english_safety_prompt_audit_v1.csv`, `hard_easy_auc_bootstrap_v1.csv`, and `difficulty_analysis.csv`.
+## Status
+- Pilot (80 pairs), confirmatory (152 pairs) and third set (200 pairs) are done and scored with BERT and MF.
+- Final correction model is done. The plan (`docs/correction_model_plan_v1.md`) was signed on 15 Nov 2026 before any test score was read. The model was chosen on the third set and tested once on the 152 pairs. Result: the spread target was narrowly missed (SD ratio 1.93 to 1.13), the routing and ranking targets were met, but a training-free share-matched cut-off agrees with English routing better than the learned model (0.895 vs 0.863). Details are in `results/correction/` and `results/correction_exploratory/`.
+- Still in progress: analysis of the third set and MF scores, paper text fixes, release.
+- The earlier pilot-trained correction demo is withdrawn and must not be reported (tag `pre-cleanup` keeps it).
 
-The detector identified 30 of 32 Hinglish prompts from three writers (93.75%). It missed two prompts. This is a small outside-writer check, not a broad estimate of detector accuracy.
-
-### Outside-writer Hinglish validation
-
-An additional detector validation was conducted using
-32 naturally written Hinglish prompts from 3 external
-writers.
-
-- Total prompts: 32
-- Correctly detected as Hinglish: 30
-- False negatives: 2
-- Detection rate: 93.75%
-- False negative rate: 6.25%
-
-The results indicate promising detection performance
-on this small external sample. However, the sample
-size is limited and does not establish broad
-generalization.
-
-Results are saved under:
-`correction_model_results/`
-
-Files:
-- outside_hinglish_prompt_audit_v1.csv
-- outside_hinglish_summary_v1.csv
-- outside_hinglish_by_writer_v1.csv
+## Not included
+ARC and LeetCode question text is not to be released; release will use pair IDs, source IDs and our own Hinglish text.
