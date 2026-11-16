@@ -18,3 +18,9 @@ Check with `python scripts/verify_hashes.py`. Add a row when a new file is froze
 | `results/correction/correction_routing_corrected_v1.csv` | e8f30fb07ef9e0ce14eee62a9bae7cc030f2a33ce5865fd99f83e2e64bf3e799 |
 | `results/correction/correction_routing_m1_v1.csv` | 77e43883894928106b8f611f4ac972ea41830fa85b3eabe14632b69763076ace |
 | `results/correction/correction_routing_original_v1.csv` | c4502e71ce556ffbafb0a80f39512d04c4884618dccd85e4b237c2af7c751a63 |
+| `results/english_only_check/config_english_only_v1.json` | d276eef9e9421966ef7d15aef695759fd2aedadb1c22222545864d2a05578bc4 |
+| `results/english_only_check/detector_recall_v1.csv` | 3cee3af2ebb0d06c9070e1522ade52cae2a679e6ab3019ac715b88a826c58ae7 |
+| `results/english_only_check/english_only_items_v1.csv` | ee104615c85287580a94ba3e128861ea8a049ca15d4264a996e163fe1a45eb8b |
+| `results/english_only_check/english_only_summary_v1.csv` | 5452a0a0bba658620d0ad80d6968a722ae553cd9a4a138c18bf75a13c9737297 |
+| `models/hinglish_language_detector.joblib` | d3407eb6873024e8f870599746e962f44520f9fa05dff078d53c9b810fc64340 |
+| `results/outside_hinglish_prompt_audit_v1.csv` | 853f99df163bcebdea25cab70c6daf5e3ade71e412af18b0592651772d1e2018 |
