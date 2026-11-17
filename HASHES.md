@@ -24,3 +24,4 @@ Check with `python scripts/verify_hashes.py`. Add a row when a new file is froze
 | `results/english_only_check/english_only_summary_v1.csv` | 5452a0a0bba658620d0ad80d6968a722ae553cd9a4a138c18bf75a13c9737297 |
 | `models/hinglish_language_detector.joblib` | d3407eb6873024e8f870599746e962f44520f9fa05dff078d53c9b810fc64340 |
 | `results/outside_hinglish_prompt_audit_v1.csv` | 853f99df163bcebdea25cab70c6daf5e3ade71e412af18b0592651772d1e2018 |
+| `scores/scores_thirdset_ids_v1.csv` | b53e041905d995b4362ed67161354f598e43a3ed10f90f92f4643c11c4fdca56 |
