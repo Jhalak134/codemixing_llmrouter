@@ -1,0 +1,5 @@
+# Why BERT (paper text, Section 3.3)
+
+Draft by Person 1 (Aryan). Numbers come from `routerbench/results/` (0-shot, 1,000 prompts).
+
+**Router choice.** We use RouteLLM because it is the only router we found with pretrained checkpoints, so it needs no training or paid calls. It gives a 0 to 1 score, makes the strong-versus-weak decision our audit needs, and is open source (Apache-2.0). Among its routers we use the BERT router as a probe, not as the best router or a proposed deployment. It runs locally on CPU without an API key, scores a prompt in about 0.3 s, and gives identical scores on a repeat run. It also has the widest score spread (SD 0.117, against 0.073 for MF and 0.003 for SW-ranking on 1,000 RouterBench prompts), which matters because our analysis is about spread, slope and crossover, and a nearly constant score such as SW-ranking's would hide them. On accuracy the three routers cannot be told apart (Appendix C). A second router (MF) did not show the compression we report for BERT, so our findings describe one router, not routers in general.
